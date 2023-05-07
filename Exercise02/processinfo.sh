@@ -1,9 +1,7 @@
 #!/opt/conda/bin/bash
 
-args=("$@") 
-
-PID=${args[0]}
-intv=${args[1]}
+PID=$1
+intv=$2
 
 #Umweg, hatte zuerst pgrep genutzt um nach pname zu suchen, aber so ist einfacher
 #if ps -p $PID > /dev/null
@@ -16,8 +14,10 @@ intv=${args[1]}
 
 #echo The programms name is : $pname
 
+
+#basic while true loop until programm is stopped which checks if program is running 
 while true; do
-    if ps -p $PID > /dev/null
+    if ps -p $PID > /dev/null #discards output, if process is running returns true
     then
         echo "Running"
     else
